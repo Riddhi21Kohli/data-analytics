@@ -1,0 +1,27 @@
+import pandas as pd
+df = pd.read_csv('dataset.csv')
+print(df.head()) # Display first five rows of the dataset
+print(df.tail()) # Display last five rows of the dataset
+print(df.describe()) # Display statistical summary of the dataset
+# Selecting a single column
+a = df['car_name']
+# Selecting multiple columns
+b = df[['car_name_1', 'model']]
+# Selecting rows based on a condition
+c = df[df['meter_reading'] > 46000]
+# Selecting rows based on multiple conditions
+d = df[(df['meter_reading'] > 46000) & (df[‘mileage'] < 4)]
+# Dropping missing values
+df.dropna()
+# Filling missing values with a specific value
+df.fillna(0)
+df.replace('good, 'OK’)
+# Adding a new column
+df['new_column'] = df['column_name_1'] + df['column_name_2']
+# Renaming columns
+df.rename(columns={'condition': 'isTested'})
+File Submitted by: Name of student (Enrolment No.) 4
+# Sorting data
+df.sort_values(by='price($)')
+# Grouping data
+df.groupby('current_price($)').mean()
