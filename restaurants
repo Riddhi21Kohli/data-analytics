@@ -1,0 +1,47 @@
+import matplotlib.pyplot as plt
+# Load the Zomato dataset (make sure you have the dataset file in the current directory)
+data = pd.read_csv('zomato.csv')
+# Country with the most restaurants
+country_most_restaurants = data['Country'].value_counts().idxmax()
+# Country with the most restaurants with a Very Good rating
+very_good_rating = data[data['Rating text'] == 'Very Good']
+country_most_very_good_rating = very_good_rating['Country'].value_counts().idxmax()
+# Top 10 restaurants with the highest ratings
+top_10_restaurants = data.nlargest(10, 'Aggregate rating')[['Restaurant Name', 'Aggregate rating']]
+File Submitted by: Name of student (Enrolment No.) 7
+# Restaurants with the highest number of feedback
+restaurants_highest_feedback = data.nlargest(10, 'Votes')[['Restaurant Name', 'Votes']]
+# Create a bar chart to visualize the results
+plt.figure(figsize=(10, 6))
+# Country with the most restaurants
+plt.subplot(2, 2, 1)
+restaurant_counts = data['Country'].value_counts()
+restaurant_counts.plot(kind='bar')
+plt.title('Country with Most Restaurants')
+plt.xlabel('Country')
+plt.ylabel('Number of Restaurants')
+# Country with the most restaurants with a Very Good rating
+plt.subplot(2, 2, 2)
+very_good_counts = very_good_rating['Country'].value_counts()
+very_good_counts.plot(kind='bar')
+plt.title('Country with Most Restaurants with Very Good Rating')
+plt.xlabel('Country')
+plt.ylabel('Number of Restaurants')
+# Top 10 restaurants with the highest ratings
+plt.subplot(2, 2, 3)
+top_10_restaurants.set_index('Restaurant Name')['Aggregate rating'].plot(kind='bar')
+plt.title('Top 10 Restaurants with Highest Ratings')
+plt.xlabel('Restaurant')
+plt.ylabel('Aggregate Rating')
+# Restaurants with the highest number of feedback
+plt.subplot(2, 2, 4)
+File Submitted by: Name of student (Enrolment No.) 8
+restaurants_highest_feedback.set_index('Restaurant Name')['Votes'].plot(kind='bar')
+plt.title('Restaurants with Highest Number of Feedback')
+plt.xlabel('Restaurant')
+plt.ylabel('Number of Votes')
+# Adjust spacing between subplots
+plt.tight_layout()
+# Display the bar chart
+plt.show()
+ 
